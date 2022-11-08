@@ -5,6 +5,7 @@ Some of the extra goals of this project are:<br>
 -using GDI<br>
 -Dialogs<br>
 -menus<br>
--using Device Context
--Working thread
+-using Device Context<br>
+-Working thread<br>
+
 
