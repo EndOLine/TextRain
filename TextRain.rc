@@ -1,0 +1,232 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "HGO Source"
+            VALUE "FileDescription", "Text Rain Generator"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "TextRain.exe"
+            VALUE "LegalCopyright", "Copyright (C) 2022"
+            VALUE "OriginalFilename", "TextRain.exe"
+            VALUE "ProductName", "Simulate text rain"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "TextRain.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PROPERTIES DIALOGEX 0, 0, 205, 238
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Properties"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,6,217,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,63,217,50,14
+    LTEXT           "Size:",IDC_STATIC,7,6,16,8
+    EDITTEXT        IDC_Width,49,11,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Height,135,11,40,14,ES_AUTOHSCROLL
+    LTEXT           "Width:",IDC_STATIC,26,14,22,8
+    LTEXT           "Height:",IDC_STATIC,110,14,24,8
+    LTEXT           "Rain Length:",IDC_STATIC,7,34,42,8
+    EDITTEXT        IDC_TTL,50,31,40,14,ES_AUTOHSCROLL
+    LTEXT           "Drop Colour:",IDC_STATIC,7,63,42,8
+    LTEXT           "Red:",IDC_STATIC,21,79,16,8
+    LTEXT           "Green:",IDC_STATIC,68,79,23,8
+    LTEXT           "Blue:",IDC_STATIC,122,79,15,8
+    EDITTEXT        IDC_DropRed,38,76,21,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DropGreen,92,76,21,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DropBlue,140,76,21,14,ES_AUTOHSCROLL
+    LTEXT           "Tail Colour:",IDC_STATIC,7,99,37,8
+    LTEXT           "Red:",IDC_STATIC,21,115,16,8
+    LTEXT           "Green:",IDC_STATIC,68,115,23,8
+    LTEXT           "Blue:",IDC_STATIC,122,115,15,8
+    EDITTEXT        IDC_TailRed,38,113,21,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TailGreen,92,113,21,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TailBlue,140,113,21,14,ES_AUTOHSCROLL
+    LTEXT           "Background Colour:",IDC_STATIC,8,133,64,8
+    LTEXT           "Red:",IDC_STATIC,22,149,16,8
+    LTEXT           "Green:",IDC_STATIC,68,149,23,8
+    LTEXT           "Blue:",IDC_STATIC,122,149,15,8
+    EDITTEXT        IDC_BackRed,38,147,21,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_BackGreen,92,147,21,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_BackBlue,140,147,21,14,ES_AUTOHSCROLL
+    LTEXT           "Refresh Milliseconds:",IDC_STATIC,7,169,68,8
+    EDITTEXT        IDC_REFRESH,76,167,31,14,ES_AUTOHSCROLL
+    LTEXT           "New drop chance:",IDC_STATIC,8,189,59,8
+    EDITTEXT        IDC_NewDrip,76,186,27,14,ES_AUTOHSCROLL
+    LTEXT           "in a thousand",IDC_STATIC,106,189,44,8
+END
+
+IDD_SERIALSAVE DIALOGEX 0, 0, 243, 147
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Save frame series"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,126,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,92,126,50,14
+    LTEXT           "Folder name",IDC_DIRECTORY,7,32,230,8
+    LTEXT           "Folder:",IDC_STATIC,7,17,24,8
+    PUSHBUTTON      "Folder...",IDC_SELECTFOLDER,47,15,50,14
+    LTEXT           "Raining frame count:",IDC_STATIC,7,79,68,8
+    LTEXT           "Stop raining frame count:",IDC_STATIC,7,101,82,8
+    EDITTEXT        IDC_FRAMECOUNT,98,76,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ENDRAINCOUNT,98,98,40,14,ES_AUTOHSCROLL
+    LTEXT           "File name prefix:",IDC_STATIC,7,57,54,8
+    EDITTEXT        IDC_FILEPREFIX,71,54,77,14,ES_AUTOHSCROLL
+    LTEXT           "###.ppm",IDC_STATIC,149,57,33,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_PROPERTIES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 198
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 231
+    END
+
+    IDD_SERIALSAVE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 140
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_PROPERTIES AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_SERIALSAVE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR1 ACCELERATORS
+BEGIN
+    VK_RETURN,      ID_ACCELERATOR40004,    VIRTKEY, NOINVERT
+    "q",            IDM_PROPERTIES,         ASCII,  NOINVERT
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
