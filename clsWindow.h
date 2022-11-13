@@ -11,6 +11,7 @@
 #include <fstream>
 #include "resource.h"
 #include "SerialSaveDialog.h"
+#include "clsRNG.h"
 
 #define IDM_SAVEAS 9004
 #define IDM_EXIT 9009
@@ -56,6 +57,7 @@ public:
 	bool PauseOutput = false;
 	bool StopRain = false;
 	bool SaveThreadRunning = false;
+	clsRNG rng;
 
 public:
 	//void ClientResize(HWND hWnd, int nWidth, int nHeight);

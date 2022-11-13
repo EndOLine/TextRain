@@ -104,7 +104,8 @@ bool clsWindow::DoCreate(HWND hInitWnd, LPCREATESTRUCT pCreateStructer) {
 	after the window is created, but before the window becomes visible.
 	*/
 
-	srand(101);
+	//srand(101);
+	rng.RNG(101);
 	SetClientSize(PixelXsize, PixelYsize);
 	SetupTimer(RefreshRate);
 	return true;
@@ -220,9 +221,9 @@ bool clsWindow::UpdateSwapBuffer() {
 	if (!StopRain) {
 		for (int x = 0; x < LineWidth; ++x) {
 			if (pTextMatrix[x] == 0) {
-				int temp = rand() % 1000;
+				int temp = rng.RNG() % 1000;
 				if (temp < NewDripChance) {			// Chance in a thousand
-					pTextMatrix[x] = (rand() % ('~' - ' ')) + 1 + ' ';
+					pTextMatrix[x] = (rng.RNG() % ('~' - ' ')) + 1 + ' ';
 					pTextMatrixTTL[x] = StartTTL;
 				};
 			};
@@ -262,7 +263,7 @@ bool clsWindow::UpdateSwapBuffer() {
 		for (int y = NbrLines-1; y > 0; --y) {
 			if (pTextMatrix[Index(x, y)]==0) {
 				if (pTextMatrix[Index(x, y-1)] != 0) {
-					pTextMatrix[Index(x, y)] = (rand() % ('~' - ' ')) + 1 + ' ';
+					pTextMatrix[Index(x, y)] = (rng.RNG() % ('~' - ' ')) + 1 + ' ';
 					pTextMatrixTTL[Index(x, y)] = StartTTL;
 				}
 			}

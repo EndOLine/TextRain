@@ -153,6 +153,7 @@
     <ClInclude Include="clsApp.h" />
     <ClInclude Include="clsHGOapplication.h" />
     <ClInclude Include="clsHGOwindow.h" />
+    <ClInclude Include="clsRNG.h" />
     <ClInclude Include="clsWindow.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="clsApp.cpp" />
     <ClCompile Include="clsHGOapplication.cpp" />
     <ClCompile Include="clsHGOwindow.cpp" />
+    <ClCompile Include="clsRNG.cpp" />
     <ClCompile Include="clsWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SerialSaveDialog.cpp" />
