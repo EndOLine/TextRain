@@ -43,6 +43,17 @@ public:
 	int NewDripChance = 20;		// chance in one thousand
 	unsigned char* pTextMatrix=0;
 	int* pTextMatrixTTL = 0;
+	/* Old monitor colour approxamations
+	* amber    : 255,176, 0
+	* lt amber : 255, 204, 0
+	* Green 1  : 51,255,0
+	* Apple ][ : 51,255,51
+	* Green 2  : 0,255,51
+	* Apple ][c: 102,255,102
+	* Green 3  : 0,255,102
+	* 
+	* Background: 40,40,40
+	*/
 	//stColour Drop = { 255,255,255 };	// green screen
 	//stColour Tail = { 0,255,0 };
 	//stColour Back = { 0,0,0 };
