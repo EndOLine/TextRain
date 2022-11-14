@@ -12,6 +12,7 @@
 #include "resource.h"
 #include "SerialSaveDialog.h"
 #include "clsRNG.h"
+#include "clsHGOtimer.h"
 
 #define IDM_SAVEAS 9004
 #define IDM_EXIT 9009

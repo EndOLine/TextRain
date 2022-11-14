@@ -96,7 +96,7 @@ bool SSD_GetFolderSaveName(HWND hWndParent, char* pFolderPath, int iPathBufferSi
 					if (SUCCEEDED(hr))
 					{
 						wcstombs(pFolderPath, pszFolderPath, iPathBufferSize);
-						size_t i;
+						//size_t i;
 						//wcstombs_s(i, pFolderPath, (size_t)iPathBufferSize, (const wchar_t *)pszFolderPath, (size_t)10);
 						bPathFound = true;
 						CoTaskMemFree(pszFolderPath);
