@@ -9,6 +9,7 @@
 #include <shobjidl.h>		// for SaveFile Dialog box
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "resource.h"
 #include "SerialSaveDialog.h"
 #include "clsRNG.h"

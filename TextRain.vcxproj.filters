@@ -44,6 +44,9 @@
     <ClInclude Include="clsRNG.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clsHGOtimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="clsApp.cpp">

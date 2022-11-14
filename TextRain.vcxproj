@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="clsApp.h" />
     <ClInclude Include="clsHGOapplication.h" />
+    <ClInclude Include="clsHGOtimer.h" />
     <ClInclude Include="clsHGOwindow.h" />
     <ClInclude Include="clsRNG.h" />
     <ClInclude Include="clsWindow.h" />

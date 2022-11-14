@@ -42,7 +42,13 @@ public:
 #ifdef LOGSTREAM
 		LOGSTREAM("Elapased Time(" << TimerName << "): " << ms << "ms ");
 #else
-
+#ifdef _DEBUG
+		OutputDebugString("Elapased Time(");
+		OutputDebugString(TimerName.c_str());
+		OutputDebugString("): ");
+		OutputDebugString(std::to_string(ms).c_str());
+		OutputDebugString("ms \n");
+#endif
 		std::cout << "Elapased Time(" << TimerName << "): " << ms << "ms " << std::endl;
 #endif
 	}

@@ -532,7 +532,9 @@ bool clsWindow::GetFolderSaveName(char* pFolderPath, int iPathBufferSize) {
 // this was one of the simpler image formats to write to.
 bool clsWindow::SavePPM(char* pFilePath, HDC hSaveDC) {
 	COLORREF colour;
+	clsHGOtimer time(__func__);
 	std::ofstream  file;
+	std::string outstring="";
 	file.open(pFilePath, std::ios::out);
 	if (!file) {
 		MessageBox(hWnd, pFilePath, "Unable to open file", MB_OK | MB_ICONEXCLAMATION);
@@ -540,11 +542,23 @@ bool clsWindow::SavePPM(char* pFilePath, HDC hSaveDC) {
 	}
 
 	file << "P3" << "\n" << PixelXsize << " " << PixelYsize << "\n" << 255 << "\n";   // 255 is max value for each colour
+	int buffercounter = 0;
 	for (int y = 0; y < PixelYsize; y++) {
 		for (int x = 0; x < PixelXsize; x++) {
 			colour = GetPixel(hSaveDC, x, y);
-			file << (int)GetRValue(colour) << " " << (int)GetGValue(colour) << " " << (int)GetBValue(colour) << "\n";
+			outstring += std::to_string(GetRValue(colour)) + " " + std::to_string(GetGValue(colour)) + " " + std::to_string(GetBValue(colour)) + "\n";
+			buffercounter++;
+			if (buffercounter > 100) {
+				file << outstring;
+				buffercounter = 0;
+				outstring = "";
+			};
+			// this is a bit slower
+			//file << (int)GetRValue(colour) << " " << (int)GetGValue(colour) << " " << (int)GetBValue(colour) << "\n";
 		};
+	};
+	if (buffercounter > 0) {		// flush remainder of buffer
+		file << outstring;
 	};
 
 	file.close();
