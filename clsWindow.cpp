@@ -209,9 +209,17 @@ bool clsWindow::UpdateSwapBuffer() {
 	// clear swap buffer
 	HBRUSH hbrush = CreateSolidBrush(RGB(Back.Red, Back.Green, Back.Blue));		// window colour -- dont forget to delete hbrush
 	RECT rect = { 0,0,PixelXsize,PixelYsize};			// set rectangle to window's dimensions
-	FillRect(SwapDC, &rect, hbrush);					// fill window with colour
+	
+	if (BackGroundDC == 0) {
+		FillRect(SwapDC, &rect, hbrush);					// fill window with colour
+		SetBkColor(SwapDC, RGB(Back.Red, Back.Green, Back.Blue));
+		SetBkMode(SwapDC, OPAQUE);
+	} else {
+		BitBlt(SwapDC, 0, 0, PixelXsize, PixelYsize, BackGroundDC, 0, 0, SRCCOPY);
+		SetBkMode(SwapDC, TRANSPARENT);
+	}
 
-	SetBkColor(SwapDC, RGB(Back.Red, Back.Green, Back.Blue));
+	
 
 	// get text dimensions
 	TEXTMETRIC tm;
@@ -386,6 +394,12 @@ bool clsWindow::DoSize(WPARAM wParam, int wmHeight, int wmWidth) {
 bool clsWindow::DoKeyDown(WPARAM wParam, LPARAM lParam) {
 
 	switch (wParam) {
+	case 'B':
+		PostMessage(hWnd, WM_COMMAND, IDM_COPYBACKGROUND, 0);
+		break;
+	case 'C':
+		PostMessage(hWnd, WM_COMMAND, IDM_CLEARBACKGROUND, 0);
+		break;
 	case 'P':
 		PostMessage(hWnd, WM_COMMAND, IDM_PAUSE, 0);
 		break;
@@ -679,6 +693,8 @@ void clsWindow::MenuCreate() {
 	AppendMenu(hSubMenu, MF_STRING, IDM_RESTART, "&Reset display\tR");
 	AppendMenu(hSubMenu, MF_STRING, IDM_STOP, "&Stop rain\tS");
 	AppendMenu(hSubMenu, MF_STRING, IDM_FULLSCREEN, "&Full Screen Toggle\tEsc");
+	AppendMenu(hSubMenu, MF_STRING, IDM_COPYBACKGROUND, "Copy &Background\tB");
+	AppendMenu(hSubMenu, MF_STRING, IDM_CLEARBACKGROUND, "&Clear Background\tC");
 	AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)hSubMenu, "&Action");
 
 	hSubMenu = CreatePopupMenu();
@@ -873,6 +889,15 @@ bool clsWindow::DoCommand(int wmId, int wmEvent, LPARAM lParam) {
 	case IDM_FULLSCREEN:
 		WindowsFullScreenToggle();
 		break;
+	case IDM_COPYBACKGROUND:
+		CaptureDesktop(BackGroundDC);
+		break;
+	case IDM_CLEARBACKGROUND:
+		if (BackGroundDC != 0) {			// clear out previous if not empty
+			DeleteDC(BackGroundDC);
+			BackGroundDC = 0;
+		};
+		break;
 	case IDM_ABOUT:
 		MessageBox(hWnd, "Dynamic text rain display application", "About", MB_OK);
 		bReturn = true;
@@ -900,6 +925,49 @@ bool clsWindow::DoTimer(UINT_PTR TimerID){
 	InvalidateRect(hWnd, NULL, FALSE);
 	return true;
 };
+
+//capture desktop of primary window
+// https://stackoverflow.com/questions/5069104/fastest-method-of-screen-capturing-on-windows
+void clsWindow::CaptureDesktop(HDC &hOutDevice) {
+	
+	if (hOutDevice != 0) {			// clear out previous if not empty
+		DeleteDC(hOutDevice);
+		hOutDevice = 0;
+	};
+
+	HDC hdc = GetDC(NULL); // get the desktop device context
+	HDC hDest = CreateCompatibleDC(hdc); // create a device context to use yourself
+
+	// get the height and width of the screen
+	int height = GetSystemMetrics(SM_CYVIRTUALSCREEN);
+	int width = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+
+	// create a bitmap
+	HBITMAP hbDesktop = CreateCompatibleBitmap(hdc, width, height);
+
+	// use the previously created device context with the bitmap
+	SelectObject(hDest, hbDesktop);
+
+	ShowWindow(hWnd, SW_HIDE);
+	Sleep(500);			// need time for the window to disappear
+	//AnimateWindow(hWnd, 1, AW_HIDE);
+	// copy from the desktop device context to the bitmap device context
+	// call this once per 'frame'
+	BitBlt(hDest, 0, 0, width, height, hdc, 0, 0, SRCCOPY);
+	//
+	ShowWindow(hWnd, SW_SHOW);
+	// after the recording is done, release the desktop context you got..
+	ReleaseDC(NULL, hdc);
+
+	// ..delete the bitmap you were using to capture frames..
+	DeleteObject(hbDesktop);
+
+	// ..and delete the context you created
+	//DeleteDC(hDest);
+	hOutDevice = hDest;			// return handle to desktop image
+	
+}
+
 
 /*
 Run TaskMgr.exe, Programs tab, 

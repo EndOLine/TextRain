@@ -25,6 +25,8 @@
 #define IDM_FULLSCREEN 9105
 #define IDM_FONT 9106
 #define IDM_SERIALSAVE 9107
+#define IDM_COPYBACKGROUND 9108
+#define IDM_CLEARBACKGROUND 9109
 
 class clsWindow :public clsHGOWindow {
 public:
@@ -34,6 +36,7 @@ public:
 	bool bSizingWindow = false;
 	double dZoom = 1.0;
 	HDC SwapDC = 0;
+	HDC BackGroundDC = 0;
 	HBITMAP SwapBM = 0;
 	HGDIOBJ OrigObject = 0;
 	HFONT hOrigfont=0;
@@ -96,6 +99,7 @@ public:
 	bool SavePPM(char* pFilePath, HDC hSaveDC);
 	void ChooseTextFont();
 	void SerialSave(HWND hwndPB);
+	void CaptureDesktop(HDC& hOutDevice);
 
 	void MenuCreate();
 	bool MenuItemIsChecked(HMENU hMenu, UINT iItem);
